@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding - [Michael and Carolyne]</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        h1, h2 {
+            font-family: 'Great Vibes', cursive;
+            color: #4a4a4a;
+        }
+        .parallax {
+            background-image: url('https://via.placeholder.com/1920x1080?text=Wedding+Background');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        #countdown {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 w-full p-4 shadow-md z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl">Our Wedding</h1>
+            <div>
+                <a href="#home" class="px-4 py-2 text-gray-700 hover:text-pink-500">Home</a>
+                <a href="#details" class="px-4 py-2 text-gray-700 hover:text-pink-500">Details</a>
+                <a href="#rsvp" class="px-4 py-2 text-gray-700 hover:text-pink-500">RSVP</a>
+                <a href="#venue" class="px-4 py-2 text-gray-700 hover:text-pink-500">Venue</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
+        <div>
+            <h1 class="text-5xl md:text-7xl mb-4">[Couple's Names]</h1>
+            <p class="text-xl md:text-2xl mb-4">Are Getting Married!</p>
+            <div id="countdown" class="mt-4"></div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl mb-8">Wedding Details</h2>
+            <p class="text-lg mb-4">Date: [Wedding Date]</p>
+            <p class="text-lg mb-4">Time: [Wedding Time]</p>
+            <p class="text-lg mb-4">Location: [Venue Name], [Venue Address]</p>
+            <p class="text-lg">Join us for a celebration of love and joy!</p>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl text-center mb-8">RSVP</h2>
+            <form id="rsvp-form" class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="attending" class="block text-gray-700">Will you attend?</label>
+                    <select id="attending" name="attending" class="w-full p-2 border rounded" required>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="guests" class="block text-gray-700">Number of Guests</label>
+                    <input type="number" id="guests" name="guests" class="w-full p-2 border rounded" min="1" value="1">
+                </div>
+                <button type="submit" class="w-full bg-pink-500 text-white p-2 rounded hover:bg-pink-600">Submit</button>
+            </form>
+            <p id="form-message" class="text-center mt-4"></p>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl mb-8">Venue</h2>
+            <p class="text-lg mb-4">[Venue Name]</p>
+            <p class="text-lg mb-4">[Venue Address]</p>
+            <div class="w-full h-96">
+                <iframe src="[Google Maps Embed URL]" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.4.0/dist/axios.min.js"></script>
+    <script>
+        // Countdown Timer
+        const weddingDate = new Date("[Wedding Date] 00:00:00").getTime();
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "We're Married!";
+            }
+        }, 1000);
+
+        // RSVP Form Submission
+        document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                attending: formData.get("attending"),
+                guests: formData.get("guests"),
+                timestamp: new Date().toISOString()
+            };
+            try {
+                const response = await axios.post("https://script.google.com/macros/s/AKfycbxlcZ4jGgi4M242V-u3UOpdx7f2ij8oGo7u6K6B5vzPZYZ2a2NYVbhl2_q9F0T4aIs9/exec", data);
+                document.getElementById("form-message").innerHTML = "Thank you for your RSVP!";
+                form.reset();
+            } catch (error) {
+                document.getElementById("form-message").innerHTML = "Error submitting RSVP. Please try again.";
+            }
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
