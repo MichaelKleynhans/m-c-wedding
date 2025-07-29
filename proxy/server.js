@@ -5,10 +5,18 @@ const cors = require('cors');
 const app = express();
 
 // Enable CORS for your GitHub Pages site
+// app.use(cors({
+//   origin: 'https://michaelkleynhans.github.io/m-c-wedding/',
+//   methods: ['GET', 'POST', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type']
+// }));
+
+const allowedOrigin = 'https://michaelkleynhans.github.io/m-c-wedding/';
+
 app.use(cors({
-  origin: 'https://michaelkleynhans.github.io/m-c-wedding/',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
+  origin: allowedOrigin,
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type'],
 }));
 
 // Middleware to parse JSON bodies
