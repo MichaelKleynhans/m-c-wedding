@@ -88,6 +88,8 @@
                     <label for="guests" class="block text-gray-700">Number of Guests</label>
                     <input type="number" id="guests" name="guests" class="w-full p-2 border rounded" min="1" value="1">
                 </div>
+                 <div id="guest-details-container" class="space-y-4 mb-4"></div>
+
                 <button type="submit" class="w-full bg-pink-500 text-white p-2 rounded hover:bg-pink-600">Submit</button>
             </form>
             <p id="form-message" class="text-center mt-4"></p>
@@ -107,53 +109,81 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.4.0/dist/axios.min.js"></script>
-    <script>
-        // Countdown Timer
-        const weddingDate = new Date("[Wedding Date] 00:00:00").getTime();
-        const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "We're Married!";
-            }
-        }, 1000);
+<script>
+const PROXY_URL = "https://wedding-rsvp-proxy.onrender.com"; // REPLACE with actual URL
 
-        // RSVP Form Submission
-        document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                attending: formData.get("attending"),
-                guests: formData.get("guests"),
-                timestamp: new Date().toISOString()
-            };
-            try {
-                const response = await axios.post("https://script.google.com/macros/s/AKfycbxlcZ4jGgi4M242V-u3UOpdx7f2ij8oGo7u6K6B5vzPZYZ2a2NYVbhl2_q9F0T4aIs9/exec", data);
-                document.getElementById("form-message").innerHTML = "Thank you for your RSVP!";
-                form.reset();
-            } catch (error) {
-                document.getElementById("form-message").innerHTML = "Error submitting RSVP. Please try again.";
-            }
-        });
+// Countdown Timer
+const weddingDate = new Date("2025-09-27 00:00:00").getTime(); // Update to your real date
+const countdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerHTML = "We're Married!";
+  }
+}, 1000);
 
-        // Smooth Scrolling for Navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute("href")).scrollIntoView({
-                    behavior: "smooth"
-                });
-            });
-        });
-    </script>
+// Generate guest fields
+document.getElementById("guests").addEventListener("input", function () {
+  const container = document.getElementById("guest-details-container");
+  container.innerHTML = "";
+
+  const count = parseInt(this.value);
+  if (!count || count < 1) return;
+
+  for (let i = 1; i <= count; i++) {
+    const guestBlock = document.createElement("div");
+    guestBlock.classList.add("border", "p-4", "rounded", "bg-white", "mb-2");
+    guestBlock.innerHTML = `
+      <h3 class="text-lg font-semibold mb-2">Guest ${i}</h3>
+      <label class="block text-gray-700">Full Name</label>
+      <input type="text" name="guest_name_${i}" class="w-full p-2 border rounded mb-2" required>
+
+      <label class="block text-gray-700">Dietary Requirements</label>
+      <input type="text" name="guest_diet_${i}" class="w-full p-2 border rounded">
+    `;
+    container.appendChild(guestBlock);
+  }
+});
+
+// Handle RSVP submit
+document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const guests = parseInt(formData.get("guests"));
+
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    attending: formData.get("attending"),
+    guests,
+    timestamp: new Date().toISOString(),
+    guestDetails: []
+  };
+
+  for (let i = 1; i <= guests; i++) {
+    data.guestDetails.push({
+      name: formData.get(`guest_name_${i}`),
+      diet: formData.get(`guest_diet_${i}`)
+    });
+  }
+
+  try {
+    const response = await axios.post(PROXY_URL, data);
+    document.getElementById("form-message").innerText = "Thank you for your RSVP!";
+    form.reset();
+    document.getElementById("guest-details-container").innerHTML = '';
+  } catch (error) {
+    document.getElementById("form-message").innerText = "Error submitting RSVP. Please try again.";
+  }
+});
+</script>
+
 </body>
 </html>
