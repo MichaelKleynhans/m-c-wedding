@@ -6,7 +6,7 @@ const app = express();
 
 // Enable CORS for your GitHub Pages site
 app.use(cors({
-  origin: 'https://michaelkleynhans.github.io',
+  origin: 'https://michaelkleynhans.github.io/m-c-wedding/',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }));
