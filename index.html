@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding - [Michael and Carolyne]</title>
+    <title>Our Wedding - Michael and Carolyne</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -30,7 +30,7 @@
         }
         
         /* RSVP Form Styles */
-        .form-container {
+        .rsvp-container {
             background: white;
             padding: 30px;
             border-radius: 10px;
@@ -59,7 +59,9 @@
             color: #555;
         }
         
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 2px solid #ddd;
@@ -68,7 +70,9 @@
             box-sizing: border-box;
         }
         
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
             outline: none;
             border-color: #4CAF50;
         }
@@ -181,14 +185,6 @@
             margin-top: 20px;
             text-align: center;
         }
-
-        .no-form-container {
-            display: none;
-        }
-
-        .no-form-container.show {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -208,7 +204,7 @@
     <!-- Hero Section -->
     <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
         <div>
-            <h1 class="text-5xl md:text-7xl mb-4">[Couple's Names]</h1>
+            <h1 class="text-5xl md:text-7xl mb-4">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mb-4">Are Getting Married!</p>
             <div id="countdown" class="mt-4"></div>
         </div>
@@ -218,9 +214,9 @@
     <section id="details" class="py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl mb-8">Wedding Details</h2>
-            <p class="text-lg mb-4">Date: [Wedding Date]</p>
-            <p class="text-lg mb-4">Time: [Wedding Time]</p>
-            <p class="text-lg mb-4">Location: [Venue Name], [Venue Address]</p>
+            <p class="text-lg mb-4">Date: September 27, 2025</p>
+            <p class="text-lg mb-4">Time: 4:00 PM</p>
+            <p class="text-lg mb-4">Location: Beautiful Venue, City</p>
             <p class="text-lg">Join us for a celebration of love and joy!</p>
         </div>
     </section>
@@ -230,7 +226,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl text-center mb-8">RSVP</h2>
             
-            <div class="form-container">
+            <div class="rsvp-container">
                 <form id="rsvpForm">
                     <!-- RSVP Question -->
                     <div class="form-group">
@@ -247,27 +243,9 @@
                         </div>
                     </div>
 
-                    <!-- Registry Link and No Form (shown when RSVP is No) -->
-                    <div id="noFormContainer" class="no-form-container">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="noFirstName">First Name *</label>
-                                <input type="text" id="noFirstName" name="noFirstName">
-                            </div>
-                            <div class="form-group">
-                                <label for="noLastName">Last Name *</label>
-                                <input type="text" id="noLastName" name="noLastName">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="noEmail">Email *</label>
-                            <input type="email" id="noEmail" name="noEmail">
-                        </div>
-
+                    <!-- Registry Link (shown when RSVP is No) -->
+                    <div id="registrySection" class="hidden">
                         <a href="https://your-registry-link.com" class="registry-link" target="_blank">View Our Registry</a>
-                        
-                        <button type="submit" class="submit-btn" id="noSubmitBtn">Submit RSVP</button>
                     </div>
 
                     <!-- Form fields (shown when RSVP is Yes) -->
@@ -276,11 +254,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" name="firstName">
+                                <input type="text" id="firstName" name="firstName" required>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName">
+                                <input type="text" id="lastName" name="lastName" required>
                             </div>
                         </div>
 
@@ -292,14 +270,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" id="email" name="email">
+                                <input type="email" id="email" name="email" required>
                             </div>
                         </div>
 
                         <!-- Number of Guests -->
                         <div class="form-group">
                             <label for="guestCount">Number of Guests *</label>
-                            <select id="guestCount" name="guestCount">
+                            <select id="guestCount" name="guestCount" required>
                                 <option value="">Select number of guests</option>
                                 <option value="1">1 Guest</option>
                                 <option value="2">2 Guests</option>
@@ -315,7 +293,7 @@
                             <div id="guestRows"></div>
                         </div>
 
-                        <button type="submit" class="submit-btn" id="yesSubmitBtn">Submit RSVP</button>
+                        <button type="submit" class="submit-btn">Submit RSVP</button>
                     </div>
                 </form>
 
@@ -338,211 +316,197 @@
     <section id="venue" class="py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl mb-8">Venue</h2>
-            <p class="text-lg mb-4">[Venue Name]</p>
-            <p class="text-lg mb-4">[Venue Address]</p>
+            <p class="text-lg mb-4">Beautiful Venue</p>
+            <p class="text-lg mb-4">123 Wedding Street, City, State</p>
             <div class="w-full h-96">
-                <iframe src="[Google Maps Embed URL]" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.397!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuNCJX!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-<script>
-// Replace this URL with your Google Apps Script web app URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUsgF-ed6UaB_d0gIcF7kxqk8E1apWLOoU10glz-VYjN6zvcoYHB3Q3me7lcDCIL5pUg/exec';
-
-// Countdown Timer
-const weddingDate = new Date("2025-09-27 00:00:00").getTime(); // Update to your real date
-const countdown = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = weddingDate - now;
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  if (distance < 0) {
-    clearInterval(countdown);
-    document.getElementById("countdown").innerHTML = "We're Married!";
-  }
-}, 1000);
-
-// RSVP Form Logic
-const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
-const noFormContainer = document.getElementById('noFormContainer');
-const formFields = document.getElementById('formFields');
-const firstNameInput = document.getElementById('firstName');
-const lastNameInput = document.getElementById('lastName');
-const guestCountSelect = document.getElementById('guestCount');
-const guestDetails = document.getElementById('guestDetails');
-const guestRows = document.getElementById('guestRows');
-const form = document.getElementById('rsvpForm');
-
-// Handle RSVP radio button changes
-rsvpRadios.forEach(radio => {
-    radio.addEventListener('change', function() {
-        if (this.value === 'Yes') {
-            noFormContainer.classList.remove('show');
-            formFields.classList.remove('hidden');
-            // Clear no form fields
-            clearNoFormFields();
-        } else if (this.value === 'No') {
-            formFields.classList.add('hidden');
-            noFormContainer.classList.add('show');
-            // Clear yes form fields
-            clearFormFields();
-        }
-    });
-});
-
-// Handle guest count changes
-guestCountSelect.addEventListener('change', function() {
-    const count = parseInt(this.value);
-    if (count > 0) {
-        generateGuestRows(count);
-        guestDetails.classList.remove('hidden');
-    } else {
-        guestDetails.classList.add('hidden');
-        guestRows.innerHTML = '';
-    }
-});
-
-// Generate guest input rows
-function generateGuestRows(count) {
-    guestRows.innerHTML = '';
-   
-    for (let i = 1; i <= count; i++) {
-        const guestRow = document.createElement('div');
-        guestRow.className = 'guest-row';
+    <script>
+        // Replace this URL with your actual Google Apps Script web app URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUsgF-ed6UaB_d0gIcF7kxqk8E1apWLOoU10glz-VYjN6zvcoYHB3Q3me7lcDCIL5pUg/exec';
         
-        // For the first guest, auto-fill with the entered name
-        let guestName = '';
-        if (i === 1) {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            if (firstName || lastName) {
-                guestName = `${firstName} ${lastName}`.trim();
+        const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
+        const registrySection = document.getElementById('registrySection');
+        const formFields = document.getElementById('formFields');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const guestCountSelect = document.getElementById('guestCount');
+        const guestDetails = document.getElementById('guestDetails');
+        const guestRows = document.getElementById('guestRows');
+        const form = document.getElementById('rsvpForm');
+
+        // Countdown Timer
+        const weddingDate = new Date("2025-09-27 16:00:00").getTime();
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = ${days}d ${hours}h ${minutes}m ${seconds}s;
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "We're Married!";
             }
-        }
-        
-        guestRow.innerHTML = `
-            <div class="guest-number">${i}</div>
-            <div class="form-group">
-                <label for="guest${i}Name">Guest ${i} Name *</label>
-                <input type="text" id="guest${i}Name" name="guest${i}Name" value="${guestName}" required>
-            </div>
-            <div class="form-group">
-                <label for="guest${i}Diet">Dietary Requirements</label>
-                <input type="text" id="guest${i}Diet" name="guest${i}Diet" placeholder="None" value="None">
-            </div>
-        `;
-        guestRows.appendChild(guestRow);
-    }
-}
+        }, 1000);
 
-// Update first guest name when name fields change
-function updateFirstGuestName() {
-    const guest1NameInput = document.getElementById('guest1Name');
-    if (guest1NameInput) {
-        const firstName = firstNameInput.value.trim();
-        const lastName = lastNameInput.value.trim();
-        const fullName = `${firstName} ${lastName}`.trim();
-        guest1NameInput.value = fullName;
-    }
-}
-
-// Add event listeners for name field changes
-if (firstNameInput) {
-    firstNameInput.addEventListener('input', updateFirstGuestName);
-}
-if (lastNameInput) {
-    lastNameInput.addEventListener('input', updateFirstGuestName);
-}
-
-// Clear form fields for Yes response
-function clearFormFields() {
-    const fields = ['firstName', 'lastName', 'phone', 'email'];
-    fields.forEach(field => {
-        const element = document.getElementById(field);
-        if (element) element.value = '';
-    });
-    if (guestCountSelect) guestCountSelect.value = '';
-    guestDetails.classList.add('hidden');
-    guestRows.innerHTML = '';
-}
-
-// Clear form fields for No response
-function clearNoFormFields() {
-    const fields = ['noFirstName', 'noLastName', 'noEmail'];
-    fields.forEach(field => {
-        const element = document.getElementById(field);
-        if (element) element.value = '';
-    });
-}
-
-// Handle form submission
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-   
-    const formData = new FormData(form);
-    const data = {};
-   
-    // Get basic form data
-    for (let [key, value] of formData.entries()) {
-        data[key] = value;
-    }
-
-    // Check if this is a "No" response
-    if (data.rsvp === 'No') {
-        // Validate required fields for No response
-        if (!data.noFirstName || !data.noLastName || !data.noEmail) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-        
-        // Map no response fields to standard fields
-        data.firstName = data.noFirstName;
-        data.lastName = data.noLastName;
-        data.email = data.noEmail;
-        data.guestCount = '0';
-    } else if (data.rsvp === 'Yes') {
-        // Validate required fields for Yes response
-        if (!data.firstName || !data.lastName || !data.email || !data.guestCount) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-    }
-
-    // Show loading state
-    document.getElementById('loading').style.display = 'block';
-    const submitBtns = document.querySelectorAll('.submit-btn');
-    submitBtns.forEach(btn => btn.disabled = true);
-   
-    try {
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
+        // Handle RSVP radio button changes
+        rsvpRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Yes') {
+                    registrySection.classList.add('hidden');
+                    formFields.classList.remove('hidden');
+                } else if (this.value === 'No') {
+                    formFields.classList.add('hidden');
+                    registrySection.classList.remove('hidden');
+                    clearFormFields();
+                }
+            });
         });
 
-        const result = await response.json();
-        
-        if (result.status === 'success') {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            form.style.display = 'none';
-        } else {
-            throw new Error(result.message || 'Failed to submit RSVP');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('errorMessage').style.display = 'block';
-        submitBtns.forEach(btn => btn.disabled = false);
-    }
-});
-</script>
+        // Handle guest count changes
+        guestCountSelect.addEventListener('change', function() {
+            const count = parseInt(this.value);
+            if (count > 0) {
+                generateGuestRows(count);
+                guestDetails.classList.remove('hidden');
+            } else {
+                guestDetails.classList.add('hidden');
+                guestRows.innerHTML = '';
+            }
+        });
 
+        // Generate guest input rows
+        function generateGuestRows(count) {
+            guestRows.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const guestRow = document.createElement('div');
+                guestRow.className = 'guest-row';
+                
+                let guestName = '';
+                if (i === 1) {
+                    const firstName = firstNameInput.value.trim();
+                    const lastName = lastNameInput.value.trim();
+                    if (firstName || lastName) {
+                        guestName = ${firstName} ${lastName}.trim();
+                    }
+                }
+                
+                guestRow.innerHTML = 
+                    <div class="guest-number">${i}</div>
+                    <div class="form-group">
+                        <label for="guest${i}Name">Guest ${i} Name *</label>
+                        <input type="text" id="guest${i}Name" name="guest${i}Name" value="${guestName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guest${i}Diet">Dietary Requirements</label>
+                        <input type="text" id="guest${i}Diet" name="guest${i}Diet" placeholder="None" value="None">
+                    </div>
+                ;
+                guestRows.appendChild(guestRow);
+            }
+        }
+
+        // Update first guest name when name fields change
+        function updateFirstGuestName() {
+            const guest1NameInput = document.getElementById('guest1Name');
+            if (guest1NameInput) {
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+                const fullName = ${firstName} ${lastName}.trim();
+                guest1NameInput.value = fullName;
+            }
+        }
+
+        firstNameInput.addEventListener('input', updateFirstGuestName);
+        lastNameInput.addEventListener('input', updateFirstGuestName);
+
+        // Clear form fields
+        function clearFormFields() {
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('email').value = '';
+            guestCountSelect.value = '';
+            guestDetails.classList.add('hidden');
+            guestRows.innerHTML = '';
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Collect all form data
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            if (data.rsvp !== 'Yes') {
+                return;
+            }
+
+            console.log('Form data to submit:', data); // Debug log
+
+            // Show loading state
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+            
+            // Create a form and submit it via hidden iframe (avoids CORS issues)
+            const submitForm = document.createElement('form');
+            submitForm.method = 'POST';
+            submitForm.action = SCRIPT_URL;
+            submitForm.target = 'hidden_iframe';
+            submitForm.style.display = 'none';
+            
+            // Add all form data as hidden inputs
+            Object.entries(data).forEach(([key, value]) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value || '';
+                submitForm.appendChild(input);
+                console.log(Added input: ${key} = ${value}); // Debug log
+            });
+            
+            // Create hidden iframe if it doesn't exist
+            if (!document.getElementById('hidden_iframe')) {
+                const iframe = document.createElement('iframe');
+                iframe.id = 'hidden_iframe';
+                iframe.name = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                
+                // Handle iframe load (indicates form submission completed)
+                iframe.onload = function() {
+                    console.log('Form submitted successfully'); // Debug log
+                    setTimeout(() => {
+                        document.getElementById('loading').style.display = 'none';
+                        document.getElementById('successMessage').style.display = 'block';
+                        form.style.display = 'none';
+                    }, 1000);
+                };
+            }
+            
+            // Submit the form
+            document.body.appendChild(submitForm);
+            console.log('Submitting form to:', SCRIPT_URL); // Debug log
+            submitForm.submit();
+            
+            // Clean up the temporary form
+            setTimeout(() => {
+                if (document.body.contains(submitForm)) {
+                    document.body.removeChild(submitForm);
+                }
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
