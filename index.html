@@ -325,8 +325,8 @@
     </section>
 
     <script>
-        // Google Apps Script web app URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpXQNt0PF7039AYfGQsHuvXj20_IqI4pQbUmUe68Bpl-gR5ejFtoYnaM-Phq526cy5/exec';
+        // Replace this URL with your actual Google Apps Script web app URL
+        const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         
         const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
         const registrySection = document.getElementById('registrySection');
@@ -444,6 +444,7 @@
             const formData = new FormData(form);
             const data = {};
             
+            // Collect all form data
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
@@ -451,6 +452,8 @@
             if (data.rsvp !== 'Yes') {
                 return;
             }
+
+            console.log('Form data to submit:', data); // Debug log
 
             // Show loading state
             document.getElementById('loading').style.display = 'block';
@@ -470,6 +473,7 @@
                 input.name = key;
                 input.value = value || '';
                 submitForm.appendChild(input);
+                console.log(`Added input: ${key} = ${value}`); // Debug log
             });
             
             // Create hidden iframe if it doesn't exist
@@ -480,8 +484,9 @@
                 iframe.style.display = 'none';
                 document.body.appendChild(iframe);
                 
-                // Handle successful submission
+                // Handle iframe load (indicates form submission completed)
                 iframe.onload = function() {
+                    console.log('Form submitted successfully'); // Debug log
                     setTimeout(() => {
                         document.getElementById('loading').style.display = 'none';
                         document.getElementById('successMessage').style.display = 'block';
@@ -492,6 +497,7 @@
             
             // Submit the form
             document.body.appendChild(submitForm);
+            console.log('Submitting form to:', SCRIPT_URL); // Debug log
             submitForm.submit();
             
             // Clean up the temporary form
