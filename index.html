@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding - [Michael and Carolyne]</title>
+    <title>Our Wedding - Michael and Carolyne</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -28,6 +28,163 @@
             font-size: 1.5rem;
             color: #fff;
         }
+        
+        /* RSVP Form Styles */
+        .rsvp-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .guest-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+        
+        .guest-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .guest-number {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .registry-link {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        
+        .registry-link:hover {
+            background-color: #1976D2;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .error-message {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +204,7 @@
     <!-- Hero Section -->
     <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
         <div>
-            <h1 class="text-5xl md:text-7xl mb-4">[Couple's Names]</h1>
+            <h1 class="text-5xl md:text-7xl mb-4">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mb-4">Are Getting Married!</p>
             <div id="countdown" class="mt-4"></div>
         </div>
@@ -57,9 +214,9 @@
     <section id="details" class="py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl mb-8">Wedding Details</h2>
-            <p class="text-lg mb-4">Date: [Wedding Date]</p>
-            <p class="text-lg mb-4">Time: [Wedding Time]</p>
-            <p class="text-lg mb-4">Location: [Venue Name], [Venue Address]</p>
+            <p class="text-lg mb-4">Date: September 27, 2025</p>
+            <p class="text-lg mb-4">Time: 4:00 PM</p>
+            <p class="text-lg mb-4">Location: Beautiful Venue, City</p>
             <p class="text-lg">Join us for a celebration of love and joy!</p>
         </div>
     </section>
@@ -68,31 +225,90 @@
     <section id="rsvp" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl text-center mb-8">RSVP</h2>
-            <form id="rsvp-form" class="max-w-lg mx-auto">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700">Full Name</label>
-                    <input type="text" id="name" name="name" class="w-full p-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" class="w-full p-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label for="attending" class="block text-gray-700">Will you attend?</label>
-                    <select id="attending" name="attending" class="w-full p-2 border rounded" required>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="guests" class="block text-gray-700">Number of Guests</label>
-                    <input type="number" id="guests" name="guests" class="w-full p-2 border rounded" min="1" value="1">
-                </div>
-                 <div id="guest-details-container" class="space-y-4 mb-4"></div>
+            
+            <div class="rsvp-container">
+                <form id="rsvpForm">
+                    <!-- RSVP Question -->
+                    <div class="form-group">
+                        <label>Will you be attending?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="rsvp-yes" name="rsvp" value="Yes" required>
+                                <label for="rsvp-yes">Yes, I'll be there!</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="rsvp-no" name="rsvp" value="No" required>
+                                <label for="rsvp-no">Sorry, can't make it</label>
+                            </div>
+                        </div>
+                    </div>
 
-                <button type="submit" class="w-full bg-pink-500 text-white p-2 rounded hover:bg-pink-600">Submit</button>
-            </form>
-            <p id="form-message" class="text-center mt-4"></p>
+                    <!-- Registry Link (shown when RSVP is No) -->
+                    <div id="registrySection" class="hidden">
+                        <a href="https://your-registry-link.com" class="registry-link" target="_blank">View Our Registry</a>
+                    </div>
+
+                    <!-- Form fields (shown when RSVP is Yes) -->
+                    <div id="formFields" class="hidden">
+                        <!-- Name Fields -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <!-- Contact Fields -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <!-- Number of Guests -->
+                        <div class="form-group">
+                            <label for="guestCount">Number of Guests *</label>
+                            <select id="guestCount" name="guestCount" required>
+                                <option value="">Select number of guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5 Guests</option>
+                            </select>
+                        </div>
+
+                        <!-- Dynamic Guest Details -->
+                        <div id="guestDetails" class="hidden">
+                            <h3>Guest Details</h3>
+                            <div id="guestRows"></div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit RSVP</button>
+                    </div>
+                </form>
+
+                <div class="loading" id="loading">
+                    <p>Submitting your RSVP...</p>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <p>Thank you! Your RSVP has been submitted successfully.</p>
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    <p>Sorry, there was an error submitting your RSVP. Please try again.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -100,90 +316,171 @@
     <section id="venue" class="py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl mb-8">Venue</h2>
-            <p class="text-lg mb-4">[Venue Name]</p>
-            <p class="text-lg mb-4">[Venue Address]</p>
+            <p class="text-lg mb-4">Beautiful Venue</p>
+            <p class="text-lg mb-4">123 Wedding Street, City, State</p>
             <div class="w-full h-96">
-                <iframe src="[Google Maps Embed URL]" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.397!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuNCJX!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.4.0/dist/axios.min.js"></script>
-<script>
-const PROXY_URL = "https://script.google.com/macros/s/AKfycbyt6kcf4zcn0riFsdGVLF_3v0e_uvMjpoMmGLZYJd-gJah3ylY8BjoRNmA-ahbxXzYA/exec";
+    <script>
+        // Google Apps Script web app URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpXQNt0PF7039AYfGQsHuvXj20_IqI4pQbUmUe68Bpl-gR5ejFtoYnaM-Phq526cy5/exec';
+        
+        const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
+        const registrySection = document.getElementById('registrySection');
+        const formFields = document.getElementById('formFields');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const guestCountSelect = document.getElementById('guestCount');
+        const guestDetails = document.getElementById('guestDetails');
+        const guestRows = document.getElementById('guestRows');
+        const form = document.getElementById('rsvpForm');
 
-// Countdown Timer
-const weddingDate = new Date("2025-09-27 00:00:00").getTime(); // Update to your real date
-const countdown = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = weddingDate - now;
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  if (distance < 0) {
-    clearInterval(countdown);
-    document.getElementById("countdown").innerHTML = "We're Married!";
-  }
-}, 1000);
+        // Countdown Timer
+        const weddingDate = new Date("2025-09-27 16:00:00").getTime();
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "We're Married!";
+            }
+        }, 1000);
 
-// Generate guest fields
-document.getElementById("guests").addEventListener("input", function () {
-  const container = document.getElementById("guest-details-container");
-  container.innerHTML = "";
+        // Handle RSVP radio button changes
+        rsvpRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Yes') {
+                    registrySection.classList.add('hidden');
+                    formFields.classList.remove('hidden');
+                } else if (this.value === 'No') {
+                    formFields.classList.add('hidden');
+                    registrySection.classList.remove('hidden');
+                    clearFormFields();
+                }
+            });
+        });
 
-  const count = parseInt(this.value);
-  if (!count || count < 1) return;
+        // Handle guest count changes
+        guestCountSelect.addEventListener('change', function() {
+            const count = parseInt(this.value);
+            if (count > 0) {
+                generateGuestRows(count);
+                guestDetails.classList.remove('hidden');
+            } else {
+                guestDetails.classList.add('hidden');
+                guestRows.innerHTML = '';
+            }
+        });
 
-  for (let i = 1; i <= count; i++) {
-    const guestBlock = document.createElement("div");
-    guestBlock.classList.add("border", "p-4", "rounded", "bg-white", "mb-2");
-    guestBlock.innerHTML = `
-      <h3 class="text-lg font-semibold mb-2">Guest ${i}</h3>
-      <label class="block text-gray-700">Full Name</label>
-      <input type="text" name="guest_name_${i}" class="w-full p-2 border rounded mb-2" required>
+        // Generate guest input rows
+        function generateGuestRows(count) {
+            guestRows.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const guestRow = document.createElement('div');
+                guestRow.className = 'guest-row';
+                
+                let guestName = '';
+                if (i === 1) {
+                    const firstName = firstNameInput.value.trim();
+                    const lastName = lastNameInput.value.trim();
+                    if (firstName || lastName) {
+                        guestName = `${firstName} ${lastName}`.trim();
+                    }
+                }
+                
+                guestRow.innerHTML = `
+                    <div class="guest-number">${i}</div>
+                    <div class="form-group">
+                        <label for="guest${i}Name">Guest ${i} Name *</label>
+                        <input type="text" id="guest${i}Name" name="guest${i}Name" value="${guestName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guest${i}Diet">Dietary Requirements</label>
+                        <input type="text" id="guest${i}Diet" name="guest${i}Diet" placeholder="None" value="None">
+                    </div>
+                `;
+                guestRows.appendChild(guestRow);
+            }
+        }
 
-      <label class="block text-gray-700">Dietary Requirements</label>
-      <input type="text" name="guest_diet_${i}" class="w-full p-2 border rounded">
-    `;
-    container.appendChild(guestBlock);
-  }
-});
+        // Update first guest name when name fields change
+        function updateFirstGuestName() {
+            const guest1NameInput = document.getElementById('guest1Name');
+            if (guest1NameInput) {
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+                const fullName = `${firstName} ${lastName}`.trim();
+                guest1NameInput.value = fullName;
+            }
+        }
 
-// Handle RSVP submit
-document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const guests = parseInt(formData.get("guests"));
+        firstNameInput.addEventListener('input', updateFirstGuestName);
+        lastNameInput.addEventListener('input', updateFirstGuestName);
 
-  const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    attending: formData.get("attending"),
-    guests,
-    timestamp: new Date().toISOString(),
-    guestDetails: []
-  };
+        // Clear form fields
+        function clearFormFields() {
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('email').value = '';
+            guestCountSelect.value = '';
+            guestDetails.classList.add('hidden');
+            guestRows.innerHTML = '';
+        }
 
-  for (let i = 1; i <= guests; i++) {
-    data.guestDetails.push({
-      name: formData.get(`guest_name_${i}`),
-      diet: formData.get(`guest_diet_${i}`)
-    });
-  }
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            if (data.rsvp !== 'Yes') {
+                return;
+            }
 
-  try {
-    const response = await axios.post(PROXY_URL, data);
-    document.getElementById("form-message").innerText = "Thank you for your RSVP!";
-    form.reset();
-    document.getElementById("guest-details-container").innerHTML = '';
-  } catch (error) {
-    document.getElementById("form-message").innerText = "Error submitting RSVP. Please try again.";
-  }
-});
-</script>
-
+            // Show loading state
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+            
+            // Submit to Google Apps Script
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('loading').style.display = 'none';
+                if (result.status === 'success') {
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.style.display = 'none';
+                } else {
+                    throw new Error(result.message || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.querySelector('.submit-btn').disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
