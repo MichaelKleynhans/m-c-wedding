@@ -213,6 +213,37 @@
             min-width: 25px;
             text-align: center;
         }
+
+        /* grainy effct */
+
+          .grain {
+  height: 100vh;
+  background-color: '#66666e';
+}
+.grain:after {
+  animation: grain 8s steps(10) infinite;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  content: "";
+  height: 300%;
+  width: 300%;
+  left: -100%;
+  top: -110%;
+  opacity: 0.8;
+  position: fixed;
+}
+
+@keyframes grain {
+  0%, 100% { transform:translate(0, 0) }
+  10% { transform:translate(-5%, -10%) }
+  20% { transform:translate(-15%, 5%) }
+  30% { transform:translate(5%, -25%) }
+  40% { transform:translate(-5%, 25%) }
+  50% { transform:translate(-15%, 10%) }
+  60% { transform:translate(15%, 0%) }
+  70% { transform:translate(0%, 15%) }
+  80% { transform:translate(5%, 35%) }
+  90% { transform:translate(-10%, 10%) }
+}
     </style>
 </head>
 <body>
@@ -232,7 +263,7 @@
     <!-- Hero Section -->
     <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
         <div>
-            <img class="w-4/5 h-auto mx-auto" src="e7200300-b811-40cd-b602-37715feb7ba0.JPG" alt="Wedding Invitation Image" />
+            <img class="w-4/5 h-auto mx-auto grain" src="e7200300-b811-40cd-b602-37715feb7ba0.JPG" alt="Wedding Invitation Image" />
             <h1 class="text-5xl md:text-7xl mb-4">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mb-4">Are Getting Married!</p>
             <div id="countdown" class="mt-4"></div>
