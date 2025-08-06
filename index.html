@@ -31,7 +31,12 @@
             font-size: 1.5rem;
             color: #fff;
         }
-        
+
+        @media (min-width: 1024px) {
+          .wedding-hero {
+            padding-top: 100px;
+          }
+        }
         /* RSVP Form Styles */
         .rsvp-container {
             background: white;
@@ -232,7 +237,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
-        <div pt-0 md:pt-[100px];>
+        <div class="wedding-hero">
             <img class="w-4/5 h-auto mx-auto" src="wedding-website-hero.JPG" alt="Wedding Invitation Image" />
             <h1 class="text-5xl md:text-7xl mb-4">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mb-4">Are Getting Married (Again)!</p>
