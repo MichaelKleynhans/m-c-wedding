@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -326,7 +326,7 @@
 
     <script>
         // Replace this URL with your actual Google Apps Script web app URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUsgF-ed6UaB_d0gIcF7kxqk8E1apWLOoU10glz-VYjN6zvcoYHB3Q3me7lcDCIL5pUg/exec';
+        const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         
         const rsvpRadios = document.querySelectorAll('input[name="rsvp"]');
         const registrySection = document.getElementById('registrySection');
@@ -347,7 +347,7 @@
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = ${days}d ${hours}h ${minutes}m ${seconds}s;
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             if (distance < 0) {
                 clearInterval(countdown);
                 document.getElementById("countdown").innerHTML = "We're Married!";
@@ -393,11 +393,11 @@
                     const firstName = firstNameInput.value.trim();
                     const lastName = lastNameInput.value.trim();
                     if (firstName || lastName) {
-                        guestName = ${firstName} ${lastName}.trim();
+                        guestName = `${firstName} ${lastName}`.trim();
                     }
                 }
                 
-                guestRow.innerHTML = 
+                guestRow.innerHTML = `
                     <div class="guest-number">${i}</div>
                     <div class="form-group">
                         <label for="guest${i}Name">Guest ${i} Name *</label>
@@ -407,7 +407,7 @@
                         <label for="guest${i}Diet">Dietary Requirements</label>
                         <input type="text" id="guest${i}Diet" name="guest${i}Diet" placeholder="None" value="None">
                     </div>
-                ;
+                `;
                 guestRows.appendChild(guestRow);
             }
         }
@@ -418,7 +418,7 @@
             if (guest1NameInput) {
                 const firstName = firstNameInput.value.trim();
                 const lastName = lastNameInput.value.trim();
-                const fullName = ${firstName} ${lastName}.trim();
+                const fullName = `${firstName} ${lastName}`.trim();
                 guest1NameInput.value = fullName;
             }
         }
@@ -444,7 +444,6 @@
             const formData = new FormData(form);
             const data = {};
             
-            // Collect all form data
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
@@ -452,8 +451,6 @@
             if (data.rsvp !== 'Yes') {
                 return;
             }
-
-            console.log('Form data to submit:', data); // Debug log
 
             // Show loading state
             document.getElementById('loading').style.display = 'block';
@@ -473,7 +470,6 @@
                 input.name = key;
                 input.value = value || '';
                 submitForm.appendChild(input);
-                console.log(Added input: ${key} = ${value}); // Debug log
             });
             
             // Create hidden iframe if it doesn't exist
@@ -484,9 +480,8 @@
                 iframe.style.display = 'none';
                 document.body.appendChild(iframe);
                 
-                // Handle iframe load (indicates form submission completed)
+                // Handle successful submission
                 iframe.onload = function() {
-                    console.log('Form submitted successfully'); // Debug log
                     setTimeout(() => {
                         document.getElementById('loading').style.display = 'none';
                         document.getElementById('successMessage').style.display = 'block';
@@ -497,7 +492,6 @@
             
             // Submit the form
             document.body.appendChild(submitForm);
-            console.log('Submitting form to:', SCRIPT_URL); // Debug log
             submitForm.submit();
             
             // Clean up the temporary form
