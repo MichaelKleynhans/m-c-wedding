@@ -17,6 +17,8 @@
             color: #c3d69b;
             font-family: "Atelier Femme Script";
         }
+
+
         .parallax {
             background-image: url('https://via.placeholder.com/1920x1080?text=Wedding+Background');
             background-attachment: fixed;
@@ -33,14 +35,24 @@
             flex-direction: column;
         }
         
+        .wedding-hero {
+            position: absolute;
+            top: 0;
+            z-index: -10;
+        }
+
+        .hero-img {
+            height: 80vh;
+            object-fit: cover;
+            width: 100vw
+        }
+
         #countdown {
             font-size: 3rem;
             color: #fff;
         }
 
-          .wedding-hero {
-            padding-top: 50px;
-          }
+         
         
         /* RSVP Form Styles */
         .rsvp-container {
@@ -232,10 +244,10 @@
         <div class="container mx-auto flex justify-between items-top">
             <h1 class="text-3xl">The Celabration</h1>
             <div class="nav-items">
-                <a href="#home" class="mb-1 text-gray-700 hover:text-[#c3d69b]">Home</a>
-                <a href="#details" class="mb-1 text-gray-700 hover:text-[#c3d69b]">Details</a>
-                <a href="#rsvp" class="mb-1 text-gray-700 hover:text-[#c3d69b]">RSVP</a>
-                <a href="#venue" class="mb-1 text-gray-700 hover:text-[#c3d69b]">Venue</a>
+                <a href="#home" class="mb-1 text-gray-700 hover:text-sage">Home</a>
+                <a href="#details" class="mb-1 text-gray-700 hover:text-sage">Details</a>
+                <a href="#rsvp" class="mb-1 text-gray-700 hover:text-sage">RSVP</a>
+                <a href="#venue" class="mb-1 text-gray-700 hover:text-sage">Venue</a>
             </div>
         </div>
     </nav>
@@ -244,7 +256,7 @@
     <section id="home" class="parallax h-screen flex items-center justify-center text-center text-white">
         <div class="wedding-hero">
             <img 
-                  class="w-4/5 h-auto mx-auto" 
+                  class="w-4/5 h-auto mx-auto hero-img"
                   src="wedding-website-hero.JPG" 
                   alt="Wedding Invitation Image" 
                    
