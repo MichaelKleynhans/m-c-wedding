@@ -25,9 +25,14 @@
             background-size: cover;
             background-position: center;
         }
+
+        .nav-logo {
+            font-size: 2rem;
+        }
+        
         .navbar {
             background-color: #f3efe4;
-            border-bottom: 1px solid #c3d69b54;
+/*             border-bottom: 1px solid #c3d69b54; */
         }
 
         .nav-items {
@@ -41,8 +46,29 @@
             color: #fff;
         }
 
-         
-        
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; 
+}
+
+.time-box {
+  text-align: center;
+}
+
+.time-box span {
+  font-size: 80px;
+  font-weight: 300;
+  display: block;
+}
+
+.label {
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+   
         /* RSVP Form Styles */
         .rsvp-container {
             background: white;
@@ -231,7 +257,7 @@
     <!-- Navigation -->
     <nav class="navbar w-full p-4 z-50">
         <div class="container mx-auto flex justify-between items-top">
-            <h1 class="text-3xl">The Celabration</h1>
+            <h1 class="text-3xl nav-logo">The Celabration</h1>
             <div class="nav-items">
                 <a href="#home" class="mb-1 text-gray-700 hover:text-sage">Home</a>
                 <a href="#details" class="mb-1 text-gray-700 hover:text-sage">Details</a>
@@ -254,7 +280,24 @@
             <h1 class="text-5xl md:text-7xl mt-7">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mt-4">Are Getting Married (Again)!</p>
             <p> Let's celebrate together this time </p>
-            <div id="countdown" class="mt-4"></div>
+            <div id="countdown" class="countdown mt-4">
+              <div class="time-box">
+                <span id="days">00</span>
+                <div class="label">DAYS</div>
+              </div>
+              <div class="time-box">
+                <span id="hours">00</span>
+                <div class="label">HOURS</div>
+              </div>
+              <div class="time-box">
+                <span id="minutes">00</span>
+                <div class="label">MINUTES</div>
+              </div>
+              <div class="time-box">
+                <span id="seconds">00</span>
+                <div class="label">SECONDS</div>
+              </div>
+            </div>      
         </div>
     </section>
 
@@ -416,19 +459,27 @@
 
         // Countdown Timer
         const weddingDate = new Date("2025-09-27 16:00:00").getTime();
+
         const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "We're Married!";
-            }
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        
+          if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("countdown").innerHTML = "<h1>We're Married!</h1>";
+          }
         }, 1000);
+
 
         // Handle RSVP radio button changes
         rsvpRadios.forEach(radio => {
