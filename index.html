@@ -9,7 +9,21 @@
     <link href="https://db.onlinewebfonts.com/c/ab03577c77168e015d932ec76a15f58e?family=Atelier+Femme+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Give+You+Glory&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <style>
+    .registry-btn {
+        background-color: #c3d69b;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+    }
+
     .hero-img {
         width: 90%;
     }
@@ -82,12 +96,11 @@
             font-style: normal;
             background-color: #f3efe4;
         }
+
         h1, h2 {
-/*             font-family: 'Great Vibes', cursive; */
             color: #c3d69b;
-            /* font-family: "Atelier Femme Script"; */
-            font-family: "Homemade Apple", cursive;
-            font-weight: 300;
+            font-family: "Give You Glory", cursive;
+            font-weight: 400;
             font-style: normal;
         }
 
@@ -107,7 +120,6 @@
         
         .navbar {
             background-color: #f3efe4;
-/*             border-bottom: 1px solid #c3d69b54; */
         }
 
         .nav-items {
@@ -330,28 +342,31 @@
     <section id="details" class="py-4">
         <div class="container mx-auto px-4 text-center">
             <div>
-            <h1 class="text-5xl md:text-7xl mt-4">Michael & Carolyne</h1>
-            <p class="text-xl md:text-2xl mt-4">Are Getting Married (Again)!</p>
-            <p> Let's celebrate together this time </p>
-            </div>
+                <div class="pb-16">
+                    <h1 class="text-5xl md:text-7xl mt-4">Michael and Carolyne</h1>
+                    <p class="text-xl md:text-2xl mt-4">Are Getting Married (Again)!</p>
+                    <p> Let's celebrate together this time in</p>
 
-            <div id="countdown" class="countdown mt-4">
-              <div class="time-box">
-                <span id="days">00</span>
-                <div class="label">DAYS</div>
-              </div>
-              <div class="time-box">
-                <span id="hours">00</span>
-                <div class="label">HOURS</div>
-              </div>
-              <div class="time-box">
-                <span id="minutes">00</span>
-                <div class="label">MINUTES</div>
-              </div>
-              <div class="time-box">
-                <span id="seconds">00</span>
-                <div class="label">SECONDS</div>
-              </div>
+                    <div id="countdown" class="countdown mt-4">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <div class="label">DAYS</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <div class="label">HOURS</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <div class="label">MINUTES</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <div class="label">SECONDS</div>
+                    </div>
+                    </div>
+                    </div>
+
             </div>
 
             <div class="py-16">
@@ -472,7 +487,7 @@
             <h2 class="text-4xl mb-8">Our Registry</h2>
             <p class="text-lg mb-4">Thank you for thinking of us!</p>
             <p class="text-lg mb-8">If you'd like to give us a gift, here are some things we'd love:</p>
-            <a href="https://your-registry-link.com" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" target="_blank">View Registry</a>
+            <a href="https://your-registry-link.com" class="registry-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" target="_blank">View Registry</a>
         </div>
     </section>
 
@@ -483,7 +498,7 @@
             <!-- <p class="text-lg mb-4">Christian Life Camps Bay</p>
             <p class="text-lg mb-4">123 Wedding Street, City, State</p> -->
             <div class="w-full h-96">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5309.760835829768!2d18.37457861684969!3d-33.95384331299714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6652bb5388e7%3A0xa51122ace571867e!2sChristian%20Life%20Camps%20Bay!5e1!3m2!1sen!2sza!4v1755169407729!5m2!1sen!2sza" width="100%" height="100%" style="border:0; border-radius: 9px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5309.760835829768!2d18.37457861684969!3d-33.95384331299714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6652bb5388e7%3A0xa51122ace571867e!2sChristian%20Life%20Camps%20Bay!5e1!3m2!1sen!2sza!4v1755169407729!5m2!1sen!2sza" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -504,7 +519,7 @@
         const form = document.getElementById('rsvpForm');
 
         // Countdown Timer
-        const weddingDate = new Date("2025-09-27 16:00:00").getTime();
+        const weddingDate = new Date("2025-09-27 15:00:00").getTime();
 
         const countdown = setInterval(() => {
         const now = new Date().getTime();
