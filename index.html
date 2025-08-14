@@ -7,7 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/ab03577c77168e015d932ec76a15f58e?family=Atelier+Femme+Script" rel="stylesheet">
-    <style>
+
+<style>
+
+.radio-input {
+    appearance: none;      /* Remove browser default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.radio-input:checked {
+    background-color: white; /* keep or remove as you wish */
+    background-image: url("data:image/svg+xml,%3Csvg fill='black' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.173 12.414l-3.88-3.88 1.415-1.415 2.465 2.465 5.656-5.657 1.415 1.415z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px;
+}
+
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f3efe4;
@@ -55,22 +79,18 @@
 }
 
 .time-box span {
-  font-size: clamp(3rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 3rem);
   font-weight: 300;
   display: block;
 }
 
 .label {
-  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
   letter-spacing: 0.2em;
   margin-top: 0.5em;
 }
         /* RSVP Form Styles */
         .rsvp-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -115,7 +135,7 @@
         .form-group select:focus, 
         .form-group textarea:focus {
             outline: none;
-            border-color: #4CAF50;
+            border-color: #c3d69b;
         }
         
         .radio-group {
@@ -147,16 +167,6 @@
             margin-bottom: 0;
         }
         
-        .guest-number {
-            background-color: #4CAF50;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 50%;
-            font-weight: bold;
-            min-width: 30px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
         
         .hidden {
             display: none;
@@ -227,25 +237,7 @@
             text-align: center;
         }
 
-        .step-header {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid #4CAF50;
-        }
 
-        .step-number {
-            background-color: #4CAF50;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 10px;
-            display: inline-block;
-            min-width: 25px;
-            text-align: center;
-        }
 
     </style>
 </head>
@@ -264,7 +256,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="parallax h-screen flex items-start justify-center text-center text-white pt-16">
+    <section id="home" class="parallax py-8">
         <div class="wedding-hero">
             <img 
                   class="w-4/5 h-auto mx-auto hero-img"
@@ -272,10 +264,18 @@
                   alt="Wedding Invitation Image" 
                    
             />
+        </div>
+    </section>
 
-            <h1 class="text-5xl md:text-7xl mt-7">Michael & Carolyne</h1>
+    <!-- Details Section -->
+    <section id="details" class="py-4">
+        <div class="container mx-auto px-4 text-center">
+            <div>
+            <h1 class="text-5xl md:text-7xl mt-4">Michael & Carolyne</h1>
             <p class="text-xl md:text-2xl mt-4">Are Getting Married (Again)!</p>
             <p> Let's celebrate together this time </p>
+            </div>
+
             <div id="countdown" class="countdown mt-4">
               <div class="time-box">
                 <span id="days">00</span>
@@ -295,32 +295,25 @@
               </div>
             </div>
 
-        </div>
-    </section>
-
-    <!-- Details Section -->
-    <section id="details" class="py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl mb-8">Wedding Details</h2>
+            <div class="py-16">
+             <h2 class="text-4xl mb-8">Wedding Details</h2>
             <p class="text-lg mb-4">Date: September 27, 2025</p>
-            <p class="text-lg mb-4">Time: 4:00 PM</p>
-            <p class="text-lg mb-4">Location: Beautiful Venue, City</p>
+            <p class="text-lg mb-4">Time: 3:30 PM</p>
+            <p class="text-lg mb-4">Ceremony: Farquhar Weg, Camps Bay, Cape Town, 8005</p>
+            <p class="text-lg mb-4">Reception: TBA</p>
             <p class="text-lg">Join us for a celebration of love and joy!</p>
+            </div>
         </div>
     </section>
 
     <!-- RSVP Section -->
-    <section id="rsvp" class="py-16 bg-gray-100">
+    <section id="rsvp" class="py-16">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl text-center mb-8">RSVP</h2>
             
             <div class="rsvp-container">
                 <form id="rsvpForm">
                     <!-- Step 1: Personal Information -->
-                    <div class="step-header">
-                        <span class="step-number">1</span>
-                        <strong>Your Information</strong>
-                    </div>
 
                     <!-- Name Fields -->
                     <div class="form-row">
@@ -337,7 +330,7 @@
                     <!-- Contact Fields -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Phone Number (Optional)</label>
+                            <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
                         </div>
                         <div class="form-group">
@@ -347,19 +340,16 @@
                     </div>
 
                     <!-- Step 2: Attendance -->
-                    <div class="step-header">
-                        <span class="step-number">2</span>
-                        <strong>Will you be joining the celebration?</strong>
-                    </div>
-
+                        <strong>Will you be able the celebrate with us?</strong>
+                        
                     <div class="form-group">
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" id="rsvp-yes" name="rsvp" value="Yes" required>
+                                <input type="radio" id="rsvp-yes" name="rsvp" class="radio-input" value="Yes" required>
                                 <label for="rsvp-yes">Yes, with joy! </label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" id="rsvp-no" name="rsvp" value="No" required>
+                                <input type="radio" id="rsvp-no" name="rsvp" class="radio-input" value="No" required>
                                 <label for="rsvp-no">No, but there in spirit.</label>
                             </div>
                         </div>
@@ -528,7 +518,7 @@
                 }
                 
                 guestRow.innerHTML = `
-                    <div class="guest-number">${i}</div>
+                   <div class="guest-number" style="display: none;">${i}</div>
                     <div class="form-group">
                         <label for="guest${i}Name">Guest ${i} Name *</label>
                         <input type="text" id="guest${i}Name" name="guest${i}Name" value="${guestName}" required>
