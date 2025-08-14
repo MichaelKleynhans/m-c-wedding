@@ -7,8 +7,52 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/ab03577c77168e015d932ec76a15f58e?family=Atelier+Femme+Script" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+    .hero-img {
+        width: 90%;
+    }
+
+    @media (min-width: 768px) {
+        hero-img {
+         width: 80%;
+        }
+    }
+
+.form-row {
+    display: flex;
+    flex-direction: column; 
+}
+
+/* For larger screens, switch to row */
+@media (min-width: 768px) {
+    .form-row {
+        flex-direction: row;
+        gap: 1rem; /* Horizontal spacing between fields */
+    }
+
+    .form-row .form-group {
+        flex: 1; /* Make each field take equal width */
+    }
+}
+
+.guest-row {
+    display: flex;
+    flex-direction: column;
+}
+
+/* For larger screens, switch to row */
+@media (min-width: 768px) {
+    .guest-row {
+        flex-direction: row;
+        gap: 1rem; 
+    }
+
+    .guest-row .guest-group {
+        flex: 1;
+    }
+}
 
 .radio-input {
     appearance: none;      /* Remove browser default */
@@ -33,14 +77,21 @@
 
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: "Libertinus Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
             background-color: #f3efe4;
         }
         h1, h2 {
 /*             font-family: 'Great Vibes', cursive; */
             color: #c3d69b;
-            font-family: "Atelier Femme Script";
+            /* font-family: "Atelier Femme Script"; */
+            font-family: "Homemade Apple", cursive;
+            font-weight: 300;
+            font-style: normal;
         }
+
+
 
 
         .parallax {
@@ -63,6 +114,15 @@
             display: flex;
             flex-direction: column;
         }
+
+.nav-item:hover {
+    color: #c3d69b; 
+}
+
+.nav-item.active {
+    font-style: italic;
+    color: #c3d69b
+}
         
 
 .countdown {
@@ -101,7 +161,6 @@
         
         .form-row {
             display: flex;
-            gap: 15px;
         }
         
         .form-row .form-group {
@@ -159,7 +218,7 @@
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
-            align-items: end;
+            
         }
         
         .guest-row .form-group {
@@ -173,7 +232,7 @@
         }
         
         .submit-btn {
-            background-color: #4CAF50;
+            background-color: #c3d69b;
             color: white;
             padding: 12px 30px;
             border: none;
@@ -185,7 +244,7 @@
         }
         
         .submit-btn:hover {
-            background-color: #45a049;
+            background-color: #88a54a;
         }
         
         .submit-btn:disabled {
@@ -246,11 +305,11 @@
     <nav class="navbar w-full p-4 z-50">
         <div class="container mx-auto flex justify-between items-top">
             <h1 class="text-3xl nav-logo">The Celabration</h1>
-            <div class="nav-items">
-                <a href="#home" class="mb-1 text-gray-700 hover:text-sage">Home</a>
-                <a href="#details" class="mb-1 text-gray-700 hover:text-sage">Details</a>
-                <a href="#rsvp" class="mb-1 text-gray-700 hover:text-sage">RSVP</a>
-                <a href="#venue" class="mb-1 text-gray-700 hover:text-sage">Venue</a>
+            <div class="nav-items sticky top-0 z-50">
+                <a href="#home" class="active nav-item mb-1 text-gray-700">Home</a>
+                <a href="#details" class="nav-item mb-1 text-gray-700">Details</a>
+                <a href="#rsvp" class="nav-item mb-1 text-gray-700">RSVP</a>
+                <a href="#venue" class="nav-item mb-1 text-gray-700">Venue</a>
             </div>
         </div>
     </nav>
@@ -309,7 +368,7 @@
     <!-- RSVP Section -->
     <section id="rsvp" class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl text-center mb-8">RSVP</h2>
+            <h2 class="text-4xl text-center mb-8">R.S.V.P</h2>
             
             <div class="rsvp-container">
                 <form id="rsvpForm">
@@ -418,13 +477,13 @@
     </section>
 
     <!-- Venue Section -->
-    <section id="venue" class="py-16 bg-gray-100">
+    <section id="venue" class="py-16">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl mb-8">Venue</h2>
-            <p class="text-lg mb-4">Beautiful Venue</p>
-            <p class="text-lg mb-4">123 Wedding Street, City, State</p>
+            <h2 class="text-4xl mb-8">Ceremony</h2>
+            <!-- <p class="text-lg mb-4">Christian Life Camps Bay</p>
+            <p class="text-lg mb-4">123 Wedding Street, City, State</p> -->
             <div class="w-full h-96">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.397!2d-74.0059!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuNCJX!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5309.760835829768!2d18.37457861684969!3d-33.95384331299714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6652bb5388e7%3A0xa51122ace571867e!2sChristian%20Life%20Camps%20Bay!5e1!3m2!1sen!2sza!4v1755169407729!5m2!1sen!2sza" width="100%" height="100%" style="border:0; border-radius: 9px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
