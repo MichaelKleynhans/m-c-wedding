@@ -109,7 +109,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                            <input type="tel" id="phone" name="phone" placeholder="+27 82 123 4567 or +44 20 1234 5678">
                         </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
@@ -331,36 +331,8 @@
         function formatPhoneNumber(phoneNumber) {
             if (!phoneNumber) return phoneNumber;
             
-            // Remove all non-digit characters except + at the beginning
-            let cleanNumber = phoneNumber.replace(/[^\d+]/g, '');
-            
-            // If it starts with +27, keep it as is
-            if (cleanNumber.startsWith('+27')) {
-                return cleanNumber;
-            }
-            
-            // If it starts with 027, convert to +27
-            if (cleanNumber.startsWith('027')) {
-                return '+27' + cleanNumber.substring(3);
-            }
-            
-            // If it starts with 0 and is likely a SA number (10-11 digits total)
-            if (cleanNumber.startsWith('0') && cleanNumber.length >= 10 && cleanNumber.length <= 11) {
-                // Convert SA format: 0XX XXX XXXX to +27XX XXX XXXX
-                return '+27' + cleanNumber.substring(1);
-            }
-            
-            // For other international numbers starting with +, keep as is
-            if (cleanNumber.startsWith('+')) {
-                return cleanNumber;
-            }
-            
-            // For any other number starting with 0, preserve it by adding a prefix
-            if (cleanNumber.startsWith('0')) {
-                return "'" + phoneNumber; // Excel/Sheets treats strings starting with ' as text
-            }
-            
-            // Return as-is for other formats
+            // Just return the phone number as entered by the user
+            // Users should enter their numbers with proper country codes
             return phoneNumber;
         }
 
